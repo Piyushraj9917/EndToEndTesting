@@ -18,10 +18,12 @@ public class CheckoutSection extends AbstractComponent {
     @FindBy(css = ".btnn.action__submit.ng-star-inserted") WebElement checkoutclick;
     @FindBy(css = ".hero-primary") WebElement Thankyou;
 
-    public void Checkout()
+    public Boolean Checkout()
     {
         checkoutclick.click();
         WaitforThankyou(Thankyou);
+        return true;
     }
+
 
 }

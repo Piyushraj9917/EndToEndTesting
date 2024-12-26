@@ -30,7 +30,8 @@ public class ProductCatalogue extends AbstractComponent {
         return productlist;
     }
     public WebElement GetProductByName(String Productname) {
-        return productlist.stream().filter(PRODUCT -> PRODUCT.findElement(By.cssSelector("b")).getText().equals(Productname)).findFirst().orElse(null);
+        WebElement DesiredProd = productlist.stream().filter(PRODUCT -> PRODUCT.findElement(By.cssSelector("b")).getText().equals(Productname)).findFirst().orElse(null);
+        return DesiredProd;
     }
     public MyCart AddProductToCart(String Productname) {
         WebElement DesiredProd = GetProductByName(Productname).findElement(Element);

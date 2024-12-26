@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite parallel="tests" name="All Test Suite">
+
+    <groups>
+        <run>
+            <include name ="ErrorValidation"/>
+        </run>
+    </groups>
+
+    <test verbose="2" preserve-order="true" name="EndToEndTesting">
+        <classes>
+                <class name="Piyush.Tests.LoginErrorValidationTest">
+                    <methods>
+                        <include name="SubmitOrderErrorValidation"/>
+                    </methods>
+                </class>
+        </classes>
+    </test>
+</suite>

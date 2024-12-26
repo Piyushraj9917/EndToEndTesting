@@ -2,6 +2,7 @@ package Piyush.TestComponents;
 
 import PiyushRaj.pageobjects.LandingPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -43,16 +44,16 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         return driver;
     }
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public LandingPage LaunchApplication() throws IOException {
          driver = InitializeDriver();
        lp = new LandingPage(driver);
         lp.LaunchWebsite();
         return lp;
     }
-    @AfterMethod
+   @AfterMethod(alwaysRun = true)
     public void TearDown()
     {
-        driver.quit();
+        driver.close();
     }
 }
