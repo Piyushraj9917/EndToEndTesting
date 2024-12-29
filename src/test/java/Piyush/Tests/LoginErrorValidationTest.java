@@ -4,6 +4,9 @@ import Piyush.TestComponents.BaseTest;
 import PiyushRaj.pageobjects.CheckoutSection;
 import PiyushRaj.pageobjects.MyCart;
 import PiyushRaj.pageobjects.ProductCatalogue;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentReporter;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -18,11 +21,11 @@ public class LoginErrorValidationTest extends BaseTest {
     public void Errors() throws IOException {
         lp.LoginAtApplication("Piy@yopmail.com","Piyh798@");
         lp.LoginError();
-        Assert.assertEquals(lp.LoginError(),"Incorrect email or password.");
+        Assert.assertEquals(lp.LoginError(),"Incorrect email password.");
     }
 
    @Test(groups = "ErrorValidation",dataProvider = "GetdataforErrorCheck")
-    public void SubmitOrderErrorValidation(HashMap<String,String> input) throws IOException {
+    public static void SubmitOrderErrorValidation(HashMap<String,String> input) throws IOException {
         ProductCatalogue Productcata =lp.LoginAtApplication(input.get("Email"),input.get("Password"));
         List<WebElement> productList = Productcata.GetProductList();
         Productcata.GetProductByName(input.get("Productname"));

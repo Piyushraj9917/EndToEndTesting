@@ -2,8 +2,12 @@ package Piyush.TestComponents;
 
 import PiyushRaj.pageobjects.LandingPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.io.FileUtils;
 import org.apache.xmlbeans.impl.xb.xsdschema.Public;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -12,6 +16,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
@@ -19,7 +24,7 @@ import java.util.Properties;
 
 public class BaseTest {
      public WebDriver driver;
-    public LandingPage lp;
+    public static LandingPage lp;
     public WebDriver InitializeDriver() throws IOException {
 
         Properties prop = new Properties();
@@ -44,6 +49,17 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         return driver;
     }
+
+    public String TakeScreenShot(String TestCasename, WebDriver driver) throws IOException {
+
+        TakesScreenshot ts =  (TakesScreenshot)driver;
+        File src = ts.getScreenshotAs(OutputType.FILE);
+        File file = new File(System.getProperty("user.dir")+"//reports "+ TestCasename + ".png");
+        FileUtils.copyFile(src, file);
+        return (System.getProperty("user.dir")+"//reports "+ TestCasename + ".png");
+    }
+
+
     @BeforeMethod(alwaysRun = true)
     public LandingPage LaunchApplication() throws IOException {
          driver = InitializeDriver();
