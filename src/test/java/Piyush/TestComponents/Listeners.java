@@ -6,20 +6,21 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.github.dockerjava.core.util.FilePathUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.xmlbeans.impl.xb.ltgfmt.TestCase;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-@Slf4j
+
 public class Listeners extends BaseTest implements ITestListener {
     ExtentReports extent;
     ExtentTest test;
     @Override
     public void onTestStart(ITestResult result) {
-        ITestListener.super.onTestStart(result);
         extent = ExtentReportNG.GetreportObject();
        test = extent.createTest(result.getMethod().getMethodName());
 
@@ -27,26 +28,25 @@ public class Listeners extends BaseTest implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        ITestListener.super.onTestSuccess(result);
         test = test.log(Status.PASS,"Test Pass");
 
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        ITestListener.super.onTestFailure(result);
         test = test.fail(result.getThrowable());
 
 
-        String FilePath;
+        String FilePath=null;
         try {
             driver = (WebDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
-            FilePath = TakeScreenShot((result.getMethod().getMethodName()),driver);
         } catch (Exception e1) {
             e1.printStackTrace();
             throw new RuntimeException(e1);
         }
+
         test.addScreenCaptureFromPath(FilePath, ((result.getMethod().getMethodName())));
+
 
     }
 /*
@@ -72,8 +72,6 @@ public class Listeners extends BaseTest implements ITestListener {
 */
     @Override
     public void onFinish(ITestContext context) {
-        ITestListener.super.onFinish(context);
-
         extent.flush();
 
     }

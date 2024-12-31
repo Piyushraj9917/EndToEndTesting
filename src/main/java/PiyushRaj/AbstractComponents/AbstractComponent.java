@@ -15,18 +15,15 @@ public class AbstractComponent {
 
     WebDriver driver;
     WebDriverWait wait;
-
     public AbstractComponent(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         PageFactory.initElements(driver,this);
 
     }
-
     public void WaitForElementToBeAppear(By find) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(find));
     }
-
     public void WaitForElementToBeInvisible(By findInvisible) {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(findInvisible));
     }

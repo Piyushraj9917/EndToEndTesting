@@ -30,7 +30,7 @@ public class BaseTest {
         Properties prop = new Properties();
         FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"//src//main//resources//GlobalData.properties");
         prop.load(fis);
-        String browse = prop.getProperty("browser");
+        String browse =  System.getProperty("browser")!=null ? System.getProperty("browser") : prop.getProperty("browser");
 
         if(browse.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
@@ -38,7 +38,7 @@ public class BaseTest {
         }
         else if (browse.equalsIgnoreCase("Firefox"))
         {
-            WebDriverManager.firefoxdriver().setup();
+            System.setProperty("webdriver.gecko.driver","/Users/ahlawat/Downloads/geckodriver");
             driver = new FirefoxDriver();
         } else if (browse.equalsIgnoreCase("Edge"))
         {

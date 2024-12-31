@@ -21,7 +21,7 @@ public class LoginErrorValidationTest extends BaseTest {
     public void Errors() throws IOException {
         lp.LoginAtApplication("Piy@yopmail.com","Piyh798@");
         lp.LoginError();
-        Assert.assertEquals(lp.LoginError(),"Incorrect email password.");
+        Assert.assertEquals(lp.LoginError(),"Incorrect email or password.");
     }
 
    @Test(groups = "ErrorValidation",dataProvider = "GetdataforErrorCheck")
