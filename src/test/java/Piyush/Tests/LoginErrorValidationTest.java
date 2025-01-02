@@ -57,7 +57,6 @@ public class LoginErrorValidationTest extends BaseTest {
         hm2.put("Productname", "ADIDAS ORIGINAL");
         hm2.put("IntialAlphabets", "ind");
 
-
         return new Object[][]{{hm}, {hm1}, {hm2}};
 
     }

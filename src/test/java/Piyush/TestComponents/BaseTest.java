@@ -4,11 +4,10 @@ import PiyushRaj.pageobjects.LandingPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.apache.xmlbeans.impl.xb.xsdschema.Public;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.checkerframework.checker.units.qual.C;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
@@ -32,16 +31,21 @@ public class BaseTest {
         prop.load(fis);
         String browse =  System.getProperty("browser")!=null ? System.getProperty("browser") : prop.getProperty("browser");
 
-        if(browse.equalsIgnoreCase("chrome")) {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-        }
-        else if (browse.equalsIgnoreCase("Firefox"))
+        if(browse.contains("chrome"))
         {
+            WebDriverManager.chromedriver().setup();
+            ChromeOptions options = new ChromeOptions();
+            if(browse.contains("headless"))
+            {
+                options.addArguments("--headless", "--disable-gpu", "--no-sandbox");
+            }
+            driver = new ChromeDriver(options);
+            driver.manage().window().setSize(new Dimension(1440,900));
+        }
+        else if (browse.contains("Firefox")) {
             System.setProperty("webdriver.gecko.driver","/Users/ahlawat/Downloads/geckodriver");
             driver = new FirefoxDriver();
-        } else if (browse.equalsIgnoreCase("Edge"))
-        {
+        } else if (browse.equalsIgnoreCase("Edge")) {
             WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver();
         }
@@ -49,7 +53,6 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         return driver;
     }
-
     public String TakeScreenShot(String TestCasename, WebDriver driver) throws IOException {
 
         TakesScreenshot ts =  (TakesScreenshot)driver;

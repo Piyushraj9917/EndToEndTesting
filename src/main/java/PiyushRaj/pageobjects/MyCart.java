@@ -30,7 +30,6 @@ public class MyCart extends AbstractComponent {
         Boolean Flag = OrderList.stream().anyMatch(prod -> prod.getText().equalsIgnoreCase(Productname));
         assert(Flag);
         CheckOut.click();
-
     }
     public CheckoutSection Selectcountry(String CountryInitialAlpabets)
     {
