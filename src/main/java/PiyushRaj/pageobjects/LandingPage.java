@@ -34,6 +34,9 @@ public class LandingPage extends AbstractComponent {
         LoginID.click();
         ProductCatalogue Productcata = new ProductCatalogue(driver);
         return Productcata;
+
+
+
     }
 
     public String LoginError() {

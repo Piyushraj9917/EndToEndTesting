@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" name="E2E Test Suite">
+
+    <listeners>
+        <listener class-name="Piyush.TestComponents.Listeners"/>
+    </listeners>
+
+
+    <test verbose="2" preserve-order="false" name="LoginValidationTests">
+        <classes>
+            <class name="Piyush.Tests.LoginErrorValidationTest">
+                <methods>
+                    <include name="Errors"/>
+                    <include name="SubmitOrderErrorValidation"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test verbose="2" preserve-order="false" name="OrderSubmissionTests">
+        <classes>
+            <class name="Piyush.Tests.SubmitOrderTest">
+                <methods>
+                    <include name="SubmitOrder"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

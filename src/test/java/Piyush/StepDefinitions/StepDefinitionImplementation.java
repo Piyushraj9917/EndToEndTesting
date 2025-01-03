@@ -42,7 +42,7 @@ public class StepDefinitionImplementation extends BaseTest {
 
     @Then("Checkout and Submit")
     public void checkoutAndSubmit() {
-        CheckoutSection checkout = mc.Selectcountry("ind");
+        CheckoutSection checkout =    mc.Selectcountry("ind");
         checkout.Checkout();
     }
 }

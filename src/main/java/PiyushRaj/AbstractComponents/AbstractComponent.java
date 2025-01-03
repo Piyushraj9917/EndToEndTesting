@@ -13,6 +13,9 @@ import java.time.Duration;
 
 public class AbstractComponent {
 
+
+
+
     WebDriver driver;
     WebDriverWait wait;
     public AbstractComponent(WebDriver driver) {

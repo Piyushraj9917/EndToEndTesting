@@ -45,6 +45,8 @@ public class StandAloneTest {
         we.stream().filter(s->s.getText().equalsIgnoreCase("India")).findFirst().ifPresent(WebElement::click);
         Thread.sleep(1000);
 
+
+        
         WebElement CheckOutbutton = driver.findElement(By.cssSelector(".btnn.action__submit.ng-star-inserted"));//checkoutClick
         CheckOutbutton.click();
         Thread.sleep(2000);
