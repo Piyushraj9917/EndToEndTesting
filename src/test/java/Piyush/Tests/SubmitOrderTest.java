@@ -56,7 +56,7 @@ public class SubmitOrderTest extends BaseTest {
     {
         HashMap<String,String > map = new HashMap<String,String >();
         map.put("Email", "Mansi@yopmail.com");
-        map.put("Password", "Piyush798@");
+        map.put("Password", "Piyush798@")
         map.put("Productname", "QWERTY");
         map.put("IntialAlphabets","ind");
 
