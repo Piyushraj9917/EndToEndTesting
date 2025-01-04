@@ -50,7 +50,7 @@ public class SubmitOrderTest extends BaseTest {
         FileUtils.copyFile(src, file);
         return file;
     }
-
+//This is Piyush
     @DataProvider
     public Object[][] getData()
     {
@@ -64,7 +64,7 @@ public class SubmitOrderTest extends BaseTest {
         map1.put("Email", "Piyush@yopmail.com");
         map1.put("Password", "Piyush798@");
         map1.put("Productname", "IPHONE 13 PRO");
-        map1.put("IntialAlphabets","ind");
+        map1.put("IntialAlphabets","indi");
 
         return new Object[][] {{map}, {map1}};
     }
