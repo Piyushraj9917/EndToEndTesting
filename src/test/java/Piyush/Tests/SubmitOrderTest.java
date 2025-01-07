@@ -16,6 +16,7 @@ import org.testng.annotations.Test;
 import java.io.File;
 import java.io.IOException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class SubmitOrderTest extends BaseTest {
 
     @Test (dataProvider = "getData", groups = {"Submition"})
     public void SubmitOrder(HashMap<String,String> input) throws IOException {
-        ProductCatalogue Productcata =lp.LoginAtApplication(input.get("Email"),input.get("Password"));
+        ProductCatalogue Productcata =lp.LoginAtApplication(input.get("Email"), input.get("Password"));
         List<WebElement> productList = Productcata.GetProductList();
         Productcata.GetProductByName(input.get("Productname"));
         MyCart mc = Productcata.AddProductToCart(input.get("Productname"));
@@ -36,7 +37,7 @@ public class SubmitOrderTest extends BaseTest {
     @Test(dependsOnMethods = {"SubmitOrder"},dataProvider = "getData", groups = {"Submition"})
     public void OrderHistoryVerification(HashMap<String,String> input)
     {
-        lp.LoginAtApplication(input.get("Email"),input.get("Password"));
+        lp.LoginAtApplication(input.get("Email"), input.get("Password"));
         OrdersPage ordersOBJ  = lp.MyOrders();
         Boolean Match = ordersOBJ.MoveToOrders(input.get("Productname"));
         Assert.assertTrue(Match);

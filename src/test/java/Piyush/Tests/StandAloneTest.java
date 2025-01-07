@@ -1,4 +1,4 @@
-package Piyush.Tests;
+/*package Piyush.Tests;
 import PiyushRaj.pageobjects.LandingPage;
 import PiyushRaj.pageobjects.ProductCatalogue;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -56,3 +56,4 @@ public class StandAloneTest {
         driver.quit();
     }
 }
+*/
